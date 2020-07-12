@@ -1,0 +1,37 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  golangci:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v1
+        with:
+          version: v1.27
+  test-windows:
+    needs: golangci # run after linting to prevent duplicate errors
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.14
+      - name: Run tests on Windows
+        run: make.exe test
+  test-unix:
+    needs: golangci # run after linting to prevent duplicate errors
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.14
+      - name: Run tests on Unix-like operating systems
+        run: make test
