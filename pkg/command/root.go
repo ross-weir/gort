@@ -27,10 +27,11 @@ func (r *Runner) initRoot() {
 
 func initRootFlagSet(fs *pflag.FlagSet, cfg *config.Config) {
 	fs.BoolVarP(&cfg.IsVerbose, "verbose", "v", false, "use verbose output")
+	fs.BoolVar(&cfg.AllPorts, "all-ports", false, "scan all ports")
+	fs.BoolVar(&cfg.CommonPorts, "common-ports", false, "scan common service ports")
 	fs.IntVarP(&cfg.Concurrency, "concurrency", "j", runtime.NumCPU(), "concurrency (default NumCPU)")
 	fs.StringVarP(&cfg.IP, "ip", "i", "", "target ip address")
-	fs.StringArrayVarP(&cfg.Ports, "port", "p", portscan.AllPorts,
-		"comma separated list of target ports, scans all ports if not supplied")
+	fs.StringSliceVarP(&cfg.Ports, "ports", "p", []string{}, "comma separated list of target ports")
 	fs.DurationVarP(&cfg.PortTimeout, "port-timeout", "t", time.Second, "how long to wait for a response from the port")
 }
 

@@ -47,8 +47,20 @@ func checkPorts(arg *scanRoutineArg) {
 	arg.wg.Done()
 }
 
+func GetPorts(c *config.Config) []string {
+	if c.AllPorts {
+		return AllPorts
+	}
+
+	if c.CommonPorts {
+		return CommonPorts
+	}
+
+	return c.Ports
+}
+
 func ScanPorts(cfg *config.Config) {
-	dividedPorts := dividePorts(cfg.Ports, cfg.Concurrency)
+	dividedPorts := dividePorts(GetPorts(cfg), cfg.Concurrency)
 	c := make(chan string)
 	wg := &sync.WaitGroup{}
 

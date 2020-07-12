@@ -1,6 +1,8 @@
 package config
 
-import "time"
+import (
+	"time"
+)
 
 type Config struct {
 	IsVerbose   bool
@@ -8,6 +10,8 @@ type Config struct {
 	IP          string
 	Ports       []string
 	PortTimeout time.Duration
+	AllPorts    bool
+	CommonPorts bool
 }
 
 func NewDefault() *Config {
