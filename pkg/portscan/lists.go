@@ -15,3 +15,8 @@ func calculateAllPorts() []string {
 }
 
 var AllPorts = calculateAllPorts()
+
+var CommonPorts = []string{
+	"20", "21", "22", "23", "25", "53", "67", "68", "69", "80", "110", "119", "123",
+	"135", "136", "137", "138", "139", "143", "161", "162", "389", "443", "3389",
+}
