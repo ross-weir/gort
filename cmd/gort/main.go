@@ -11,8 +11,8 @@ import (
 var (
 	// Populated by goreleaser during build
 	version = "master"
-	commit  = "?"
-	date    = ""
+	commit  = "none"
+	date    = "unknown"
 )
 
 func main() {
