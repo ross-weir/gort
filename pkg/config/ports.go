@@ -1,4 +1,4 @@
-package portscan
+package config
 
 import "strconv"
 
@@ -14,9 +14,9 @@ func calculateAllPorts() []string {
 	return results
 }
 
-var AllPorts = calculateAllPorts()
+var allPorts = calculateAllPorts()
 
-var CommonPorts = []string{
+var commonPorts = []string{
 	"20", "21", "22", "23", "25", "53", "67", "68", "69", "80", "110", "119", "123",
 	"135", "136", "137", "138", "139", "143", "161", "162", "389", "443", "3389",
 }

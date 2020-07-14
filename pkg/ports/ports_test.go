@@ -1,4 +1,4 @@
-package portscan
+package ports
 
 import (
 	"testing"
