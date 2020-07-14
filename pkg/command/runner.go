@@ -16,7 +16,7 @@ func NewRunner(version, commit, date string) *Runner {
 		version: version,
 		commit:  commit,
 		date:    date,
-		cfg:     config.NewDefault(),
+		cfg:     config.New(),
 	}
 
 	r.initRoot()

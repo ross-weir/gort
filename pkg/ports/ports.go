@@ -1,4 +1,4 @@
-package portscan
+package ports
 
 import (
 	"fmt"
@@ -47,20 +47,8 @@ func checkPorts(arg *scanRoutineArg) {
 	arg.wg.Done()
 }
 
-func GetPorts(c *config.Config) []string {
-	if c.AllPorts {
-		return AllPorts
-	}
-
-	if c.CommonPorts {
-		return CommonPorts
-	}
-
-	return c.Ports
-}
-
-func ScanPorts(cfg *config.Config) {
-	dividedPorts := dividePorts(GetPorts(cfg), cfg.Concurrency)
+func Scan(cfg *config.Config) {
+	dividedPorts := dividePorts(cfg.Ports(), cfg.Concurrency)
 	c := make(chan string)
 	wg := &sync.WaitGroup{}
 
